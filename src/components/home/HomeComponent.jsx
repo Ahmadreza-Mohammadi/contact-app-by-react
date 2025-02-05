@@ -20,7 +20,9 @@ function HomeComponent() {
                 type="text"
                 placeholder="نام..."
               />
-              <span className="text-red-500 text-xs font-semibold ">لطفا نام را وارد کنید</span>
+              <span className="text-red-500 text-xs font-semibold ">
+                لطفا نام را وارد کنید
+              </span>
             </div>
             <div className="flex flex-col gap-1">
               <label className="font-semibold" htmlFor="">
@@ -31,7 +33,9 @@ function HomeComponent() {
                 type="text"
                 placeholder="نام خانوادگی..."
               />
-              <span>لطفا نام را وارد کنید</span>
+              <span className="text-red-500 text-xs font-semibold ">
+                لطفا نام خانوادگی را وارد کنید
+              </span>
             </div>
             <div className="flex flex-col gap-1">
               <label className="font-semibold" htmlFor="">
@@ -42,7 +46,9 @@ function HomeComponent() {
                 type="text"
                 placeholder="شماره موبایل..."
               />
-              <span>لطفا نام را وارد کنید</span>
+              <span className="text-red-500 text-xs font-semibold ">
+                لطفا شماره موبایل را وارد کنید
+              </span>
             </div>
             <div className="flex flex-col gap-1">
               <label className="font-semibold" htmlFor="">
@@ -53,7 +59,9 @@ function HomeComponent() {
                 type="text"
                 placeholder="نسبت..."
               />
-              <span>لطفا نام را وارد کنید</span>
+              <span className="text-red-500 text-xs font-semibold ">
+                لطفا نسبت خود را وارد کنید
+              </span>
             </div>
             <div className="flex flex-col gap-1">
               <label className="font-semibold" htmlFor="">
@@ -64,19 +72,144 @@ function HomeComponent() {
                 type="text"
                 placeholder="ایمیل..."
               />
-              <span>لطفا نام را وارد کنید</span>
+              <span className="text-red-500 text-xs font-semibold ">
+                لطفا ایمیل خود را وارد کنید
+              </span>
             </div>
           </div>
-          <button className="border-1 p-1 w-24 rounded-md text-xs bg-gray-700 text-white font-semibold">اضافه کردن</button>
+          <button className="border-1 p-1 w-24 rounded-md text-xs bg-gray-700 text-white font-semibold hover:cursor-pointer hover:bg-white hover:text-black">
+            اضافه کردن
+          </button>
         </div>
-
+        {/* contacts container */}
         <div className="h-0  w-1/2 flex items-start flex-wrap gap-6">
-          <div className="w-[280px] h-24 bg-blue-400">cart 1</div>
-          <div className="w-[280px] h-24 bg-blue-400">cart 2</div>
-          <div className="w-[280px] h-24 bg-blue-400">cart 3</div>
-          <div className="w-[280px] h-24 bg-blue-400">cart 4</div>
-          <div className="w-[280px] h-24 bg-blue-400">cart 4</div>
-          <div className="w-[280px] h-24 bg-blue-400">cart 4</div>
+          {/* contacts */}
+          <div className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl">
+            <span className="font-bold">نام:</span> <span>علی رحیمی</span>
+            <div>
+              <span className="font-bold">شماره موبایل:</span>{" "}
+              <span>۰۹۱۰۹۹۹۳۳۲۲</span>
+            </div>
+            <div>
+              <span className="font-bold">نسبت:</span> <span>دوست</span>
+            </div>
+            <div>
+              <span className="font-bold">ایمیل:</span> <span>email</span>
+            </div>
+            <div className=" flex justify-end gap-1">
+              <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                ویرایش
+              </button>
+              <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                حذف
+              </button>
+            </div>
+          </div>
+          <div className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl">
+            <span className="font-bold">نام:</span> <span>علی رحیمی</span>
+            <div>
+              <span className="font-bold">شماره موبایل:</span>{" "}
+              <span>۰۹۱۰۹۹۹۳۳۲۲</span>
+            </div>
+            <div>
+              <span className="font-bold">نسبت:</span> <span>دوست</span>
+            </div>
+            <div>
+              <span className="font-bold">ایمیل:</span> <span>email</span>
+            </div>
+            <div className=" flex justify-end gap-1">
+              <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                ویرایش
+              </button>
+              <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                حذف
+              </button>
+            </div>
+          </div>
+          <div className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl">
+            <span className="font-bold">نام:</span> <span>علی رحیمی</span>
+            <div>
+              <span className="font-bold">شماره موبایل:</span>{" "}
+              <span>۰۹۱۰۹۹۹۳۳۲۲</span>
+            </div>
+            <div>
+              <span className="font-bold">نسبت:</span> <span>دوست</span>
+            </div>
+            <div>
+              <span className="font-bold">ایمیل:</span> <span>email</span>
+            </div>
+            <div className=" flex justify-end gap-1">
+              <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                ویرایش
+              </button>
+              <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                حذف
+              </button>
+            </div>
+          </div>
+          <div className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl">
+            <span className="font-bold">نام:</span> <span>علی رحیمی</span>
+            <div>
+              <span className="font-bold">شماره موبایل:</span>{" "}
+              <span>۰۹۱۰۹۹۹۳۳۲۲</span>
+            </div>
+            <div>
+              <span className="font-bold">نسبت:</span> <span>دوست</span>
+            </div>
+            <div>
+              <span className="font-bold">ایمیل:</span> <span>email</span>
+            </div>
+            <div className=" flex justify-end gap-1">
+              <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                ویرایش
+              </button>
+              <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                حذف
+              </button>
+            </div>
+          </div>
+          <div className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl">
+            <span className="font-bold">نام:</span> <span>علی رحیمی</span>
+            <div>
+              <span className="font-bold">شماره موبایل:</span>{" "}
+              <span>۰۹۱۰۹۹۹۳۳۲۲</span>
+            </div>
+            <div>
+              <span className="font-bold">نسبت:</span> <span>دوست</span>
+            </div>
+            <div>
+              <span className="font-bold">ایمیل:</span> <span>email</span>
+            </div>
+            <div className=" flex justify-end gap-1">
+              <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                ویرایش
+              </button>
+              <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                حذف
+              </button>
+            </div>
+          </div>
+          <div className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl">
+            <span className="font-bold">نام:</span> <span>علی رحیمی</span>
+            <div>
+              <span className="font-bold">شماره موبایل:</span>{" "}
+              <span>۰۹۱۰۹۹۹۳۳۲۲</span>
+            </div>
+            <div>
+              <span className="font-bold">نسبت:</span> <span>دوست</span>
+            </div>
+            <div>
+              <span className="font-bold">ایمیل:</span> <span>email</span>
+            </div>
+            <div className=" flex justify-end gap-1">
+              <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                ویرایش
+              </button>
+              <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+                حذف
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>
