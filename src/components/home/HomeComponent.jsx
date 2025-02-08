@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../header/Header";
 import InputField from "../../base/inputField";
 import axios from "axios";
 import ContactsList from "../contacts-list/contactsList";
+import ConfirmationModal from "../../shared/confirmModal";
 
 function HomeComponent() {
   const [users, setUsers] = useState([]);
@@ -11,6 +12,9 @@ function HomeComponent() {
   const [mobile, setMobile] = useState("");
   const [relation, setRelation] = useState("");
   const [email, setEmail] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [deleteUserId, setDeleteUserId] = useState(null);
+  const [editUserId, setEditUserId] = useState(null);
 
   useEffect(() => {
     async function fetchedData() {
@@ -34,12 +38,44 @@ function HomeComponent() {
     setEmail("");
   }
 
-  async function deleteUserHandler(id) {
-    await axios.delete(
-      `https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list/${id}`
-    );
-    
-  }
+  const showDeleteModal = (id) => {
+    setDeleteUserId(id);
+    setShowModal(true);
+  };
+
+  const handleDeleteUser = async () => {
+    if (deleteUserId) {
+      await axios.delete(
+        `https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list/${deleteUserId}`
+      );
+      setShowModal(false);
+      setDeleteUserId(null);
+    }
+  };
+
+  const startEditUser = (user) => {
+    setEditUserId(user.id);
+    setName(user.name);
+    setLastname(user.lastname);
+    setMobile(user.mobile);
+    setRelation(user.relation);
+    setEmail(user.email);
+  };
+
+  const editUserHandler = async () => {
+    if (editUserId) {
+      await axios.put(
+        `https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list/${editUserId}`,
+        { name, lastname, mobile, relation, email }
+      );
+      setEditUserId(null);
+      setName("");
+      setLastname("");
+      setMobile("");
+      setRelation("");
+      setEmail("");
+    }
+  };
 
   return (
     <>
@@ -85,14 +121,20 @@ function HomeComponent() {
             />
           </div>
           <button
-            onClick={postUser}
+            onClick={editUserId ? editUserHandler : postUser}
             className="border-1 p-1 w-24 rounded-md text-xs bg-gray-700 text-white font-semibold hover:cursor-pointer hover:bg-white hover:text-black"
           >
-            اضافه کردن
+            {editUserId ? "ویرایش کردن" : "اضافه کردن"}
           </button>
         </div>
-        <ContactsList deleteUserHandler={deleteUserHandler} users={users} />
+        <ContactsList users={users} showDeleteModal={showDeleteModal} startEditUser={startEditUser} />
       </div>
+      {showModal && (
+        <ConfirmationModal
+          onCancel={() => setShowModal(false)}
+          onConfirm={handleDeleteUser}
+        />
+      )}
     </>
   );
 }

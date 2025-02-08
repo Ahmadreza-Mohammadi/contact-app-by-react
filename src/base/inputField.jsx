@@ -9,10 +9,14 @@ const InputField = ({ label, type, placeholder, value, onChange }) => {
         value={value}
         onChange={onChange}
       />
-      <span className="text-red-500 text-xs font-semibold">
-        لطفا {label} را وارد کنید
-      </span>
+      {!value.trim() && (
+        <span className="text-red-500 text-xs font-semibold">
+          لطفا {label} را وارد کنید
+        </span>
+      )}
+      
     </div>
+    
   );
 };
 

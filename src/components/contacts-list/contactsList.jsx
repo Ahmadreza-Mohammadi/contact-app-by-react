@@ -1,4 +1,6 @@
-function ContactsList({ users, deleteUserHandler }) {
+import React from "react";
+
+function ContactsList({ users, showDeleteModal, startEditUser }) {
   return (
     <div className="h-0 w-1/2 flex items-start flex-wrap gap-6">
       {users.map((user) => (
@@ -19,11 +21,14 @@ function ContactsList({ users, deleteUserHandler }) {
             <span className="font-bold">ایمیل:</span> <span>{user.email}</span>
           </div>
           <div className="flex justify-end gap-1">
-            <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+            <button
+              className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm"
+              onClick={() => startEditUser(user)}
+            >
               ویرایش
             </button>
             <button
-              onClick={() => deleteUserHandler(user.id)}
+              onClick={() => showDeleteModal(user.id)}
               className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm hover:cursor-pointer"
             >
               حذف
