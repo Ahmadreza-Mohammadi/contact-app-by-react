@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../header/Header";
 import InputField from "../../base/inputField";
 import axios from "axios";
 import ContactsList from "../contacts-list/contactsList";
-
 
 function HomeComponent() {
   const [users, setUsers] = useState([]);
@@ -24,10 +23,22 @@ function HomeComponent() {
   }, [users]);
 
   async function postUser() {
-    axios.post(
+    await axios.post(
       "https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list",
       { name, lastname, mobile, relation, email }
     );
+    setName("");
+    setLastname("");
+    setMobile("");
+    setRelation("");
+    setEmail("");
+  }
+
+  async function deleteUserHandler(id) {
+    await axios.delete(
+      `https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list/${id}`
+    );
+    
   }
 
   return (
@@ -35,9 +46,7 @@ function HomeComponent() {
       <Header />
       <div className="flex justify-between gap-10 mt-5">
         <div className="shadow-2xl w-1/2 p-8">
-          <h1 className="text-center font-bold text-xl">
-            اضافه/ویرایش کاربران
-          </h1>
+          <h1 className="text-center font-bold text-xl">اضافه کردن کاربران</h1>
           <div className="p-2 flex flex-col gap-3">
             <InputField
               label="نام"
@@ -82,7 +91,7 @@ function HomeComponent() {
             اضافه کردن
           </button>
         </div>
-        <ContactsList users={users} /> {/* Use the new component */}
+        <ContactsList deleteUserHandler={deleteUserHandler} users={users} />
       </div>
     </>
   );

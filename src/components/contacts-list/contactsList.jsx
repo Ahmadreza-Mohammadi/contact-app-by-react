@@ -1,9 +1,6 @@
-import React from "react";
-
-function ContactsList({ users }) {
+function ContactsList({ users, deleteUserHandler }) {
   return (
     <div className="h-0 w-1/2 flex items-start flex-wrap gap-6">
-      {/* contacts */}
       {users.map((user) => (
         <div
           key={user.id}
@@ -11,11 +8,12 @@ function ContactsList({ users }) {
         >
           <span className="font-bold">نام:</span> <span>{user.name}</span>
           <div>
-            <span className="font-bold">شماره موبایل:</span>{" "}
+            <span className="font-bold">شماره موبایل:</span>
             <span>{user.mobile}</span>
           </div>
           <div>
-            <span className="font-bold">نسبت:</span> <span>{user.relation}</span>
+            <span className="font-bold">نسبت:</span>
+            <span>{user.relation}</span>
           </div>
           <div>
             <span className="font-bold">ایمیل:</span> <span>{user.email}</span>
@@ -24,7 +22,10 @@ function ContactsList({ users }) {
             <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
               ویرایش
             </button>
-            <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
+            <button
+              onClick={() => deleteUserHandler(user.id)}
+              className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm hover:cursor-pointer"
+            >
               حذف
             </button>
           </div>
