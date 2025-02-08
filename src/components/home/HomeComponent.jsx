@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
-import InputField from "../../base/inputField"; // وارد کردن کامپوننت جدید
+import InputField from "../../base/inputField";
 import axios from "axios";
+import ContactsList from "../contacts-list/contactsList";
+
 
 function HomeComponent() {
   const [users, setUsers] = useState([]);
   const [name, setName] = useState("");
-  const [familyName, setFamilyName] = useState("");
+  const [lastname, setLastname] = useState("");
   const [mobile, setMobile] = useState("");
   const [relation, setRelation] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +21,14 @@ function HomeComponent() {
       setUsers(res.data);
     }
     fetchedData();
-  }, []);
+  }, [users]);
+
+  async function postUser() {
+    axios.post(
+      "https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list",
+      { name, lastname, mobile, relation, email }
+    );
+  }
 
   return (
     <>
@@ -41,8 +50,8 @@ function HomeComponent() {
               label="نام خانوادگی"
               type="text"
               placeholder="نام خانوادگی..."
-              value={familyName}
-              onChange={(e) => setFamilyName(e.target.value)}
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
             />
             <InputField
               label="شماره موبایل"
@@ -66,42 +75,14 @@ function HomeComponent() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <button className="border-1 p-1 w-24 rounded-md text-xs bg-gray-700 text-white font-semibold hover:cursor-pointer hover:bg-white hover:text-black">
+          <button
+            onClick={postUser}
+            className="border-1 p-1 w-24 rounded-md text-xs bg-gray-700 text-white font-semibold hover:cursor-pointer hover:bg-white hover:text-black"
+          >
             اضافه کردن
           </button>
         </div>
-        {/* contacts container */}
-        <div className="h-0  w-1/2 flex items-start flex-wrap gap-6">
-          {/* contacts */}
-          {users.map((user) => (
-            <div
-              key={user.id}
-              className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl"
-            >
-              <span className="font-bold">نام:</span> <span>{user.name}</span>
-              <div>
-                <span className="font-bold">شماره موبایل:</span>{" "}
-                <span>{user.mobile}</span>
-              </div>
-              <div>
-                <span className="font-bold">نسبت:</span>{" "}
-                <span>{user.relation}</span>
-              </div>
-              <div>
-                <span className="font-bold">ایمیل:</span>{" "}
-                <span>{user.email}</span>
-              </div>
-              <div className="flex justify-end gap-1">
-                <button className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm">
-                  ویرایش
-                </button>
-                <button className="bg-red-500 p-1 rounded-md w-16 text-white font-bold text-sm">
-                  حذف
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ContactsList users={users} /> {/* Use the new component */}
       </div>
     </>
   );
