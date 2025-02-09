@@ -15,6 +15,7 @@ function HomeComponent() {
   const [showModal, setShowModal] = useState(false);
   const [deleteUserId, setDeleteUserId] = useState(null);
   const [editUserId, setEditUserId] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchedData() {
@@ -26,7 +27,25 @@ function HomeComponent() {
     fetchedData();
   }, [users]);
 
+  function validateIranianMobileNumber(mobile) {
+    const iranMobileRegex = /^(\+98|0)?9\d{9}$/;
+    return iranMobileRegex.test(mobile);
+  }
+
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   async function postUser() {
+    if (!validateIranianMobileNumber(mobile)) {
+      setError("شماره موبایل وارد شده نامعتبر است. لطفا مقدار درست وارد کنید.");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("ایمیل وارد شده نامعتبر است. لطفا مقدار درست وارد کنید.");
+      return;
+    }
     await axios.post(
       "https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list",
       { name, lastname, mobile, relation, email }
@@ -36,6 +55,7 @@ function HomeComponent() {
     setMobile("");
     setRelation("");
     setEmail("");
+    setError("");
   }
 
   const showDeleteModal = (id) => {
@@ -63,6 +83,14 @@ function HomeComponent() {
   };
 
   const editUserHandler = async () => {
+    if (!validateIranianMobileNumber(mobile)) {
+      setError("شماره موبایل وارد شده نامعتبر است. لطفا مقدار درست وارد کنید.");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("ایمیل وارد شده نامعتبر است. لطفا مقدار درست وارد کنید.");
+      return;
+    }
     if (editUserId) {
       await axios.put(
         `https://67a70569510789ef0dfcbe85.mockapi.io/contacts/users-list/${editUserId}`,
@@ -74,6 +102,7 @@ function HomeComponent() {
       setMobile("");
       setRelation("");
       setEmail("");
+      setError("");
     }
   };
 
@@ -82,7 +111,9 @@ function HomeComponent() {
       <Header />
       <div className="flex justify-between gap-10 mt-5">
         <div className="shadow-2xl w-1/2 p-8">
-          <h1 className="text-center font-bold text-xl">اضافه کردن کاربران</h1>
+          <h1 className="text-center font-bold text-xl">
+            {editUserId ? "ویرایش کاربر" : "اضافه کردن کاربران"}
+          </h1>
           <div className="p-2 flex flex-col gap-3">
             <InputField
               label="نام"
@@ -119,6 +150,7 @@ function HomeComponent() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            {error && <p className="text-red-500">{error}</p>}
           </div>
           <button
             onClick={editUserId ? editUserHandler : postUser}
@@ -127,7 +159,11 @@ function HomeComponent() {
             {editUserId ? "ویرایش کردن" : "اضافه کردن"}
           </button>
         </div>
-        <ContactsList users={users} showDeleteModal={showDeleteModal} startEditUser={startEditUser} />
+        <ContactsList
+          users={users}
+          showDeleteModal={showDeleteModal}
+          startEditUser={startEditUser}
+        />
       </div>
       {showModal && (
         <ConfirmationModal

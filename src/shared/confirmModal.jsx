@@ -18,23 +18,25 @@ const ConfirmationModal = ({ onCancel, onConfirm }) => {
                 fillRule="evenodd"
               ></path>
             </svg>
-            <h2 className="text-xl font-bold py-4 text-gray-200">Are you sure?</h2>
+            <h2 className="text-xl font-bold py-4 text-gray-200">
+              آیا از حذف کاربر مطمئن هستید؟
+            </h2>
             <p className="font-bold text-sm text-gray-500 px-2">
               Do you really want to continue? This process cannot be undone
             </p>
           </div>
-          <div className="flex gap-1">
+          <div className="flex justify-center gap-2">
             <button
               className="mb-2 md:mb-0 bg-gray-700 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border-2 border-gray-600 hover:border-gray-700 text-gray-300 rounded-full hover:shadow-lg hover:bg-gray-800 hover:cursor-pointer transition ease-in duration-300"
               onClick={onCancel}
             >
-              Cancel
+              لغو
             </button>
             <button
               className="bg-red-500 hover:bg-transparent px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 hover:border-red-500 text-white hover:text-red-500 hover:cursor-pointer rounded-full transition ease-in duration-300"
               onClick={onConfirm}
             >
-              Confirm
+              حذف
             </button>
           </div>
         </div>

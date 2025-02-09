@@ -6,7 +6,7 @@ function ContactsList({ users, showDeleteModal, startEditUser }) {
       {users.map((user) => (
         <div
           key={user.id}
-          className="w-[290px] h-38 bg-[#e6e7eb] p-2 rounded-md shadow-xl"
+          className="w-[340px] h-42 bg-[#e6e7eb] p-2 rounded-md shadow-xl flex flex-col"
         >
           <span className="font-bold">نام:</span> <span>{user.name}</span>
           <div>
@@ -18,11 +18,12 @@ function ContactsList({ users, showDeleteModal, startEditUser }) {
             <span>{user.relation}</span>
           </div>
           <div>
-            <span className="font-bold">ایمیل:</span> <span>{user.email}</span>
+            <span className="font-bold text-sm">ایمیل:</span>{" "}
+            <span>{user.email}</span>
           </div>
           <div className="flex justify-end gap-1">
             <button
-              className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm"
+              className="bg-blue-500 p-1 rounded-md w-16 text-white font-bold text-sm hover:cursor-pointer"
               onClick={() => startEditUser(user)}
             >
               ویرایش
